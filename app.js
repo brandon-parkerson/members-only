@@ -9,9 +9,12 @@ const usersRouter = require("./routes/usersRouter")
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
+
 app.use(session({secret: "osmo", resave: false, saveUninitialized: false}));
 app.use(passport.session());
 app.use(express.urlencoded({extended: false}));
+// css 
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use("/", usersRouter);
 

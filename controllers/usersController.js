@@ -5,7 +5,9 @@ async function getIndex(req, res) {
 }
 
 async function createUser(req, res) {
-    res.render("index", {created})
+    const {first, last, username, password } = req.body;
+    console.log(first, last);
+    res.render("created", {first, last, username, password})
 }
 
 module.exports = {
