@@ -9,13 +9,13 @@ async function getAllUsers() {
 async function insertUser(
   firstName,
   lastName,
-  username,
+  email,
   password,
   membershipStatus
 ) {
   await pool.query(
-    "INSERT INTO users (user_first_name, user_last_name, username, password, membership_status) VALUES ($1, $2, $3, $4, $5)",
-    [firstName, lastName, username, password, membershipStatus]
+    "INSERT INTO users (user_first_name, user_last_name, email, password, membership_status) VALUES ($1, $2, $3, $4, $5)",
+    [firstName, lastName, email, password, membershipStatus]
   );
 }
 
