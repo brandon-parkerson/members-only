@@ -1,13 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/styles.css" />
     <title>Members Only</title>
-</head>
-<body>
+  </head>
+  <body>
     <main>
-        <h1>Members Only</h1>
+      <h1>Members Only</h1>
+      <h2>Login</h2>
+      <form action="/users" method="post">
+        <label for="email">
+          Email:
+          <input type="text" />
+        </label>
+        <label for="password">
+          Password:
+          <input type="password" />
+        </label>
+      </form>
+      <a href="/register">Register</a>
     </main>
-</body>
+  </body>
 </html>
