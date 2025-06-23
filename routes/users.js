@@ -21,4 +21,9 @@ router.post("/register", (req, res) => {
   console.log(firsName, lastName, email, password, membershipStatus);
   res.redirect("/");
 });
+
+router.get("/dashboard", (req, res) => {
+  res.render("dashboard");
+});
+
 module.exports = router;
