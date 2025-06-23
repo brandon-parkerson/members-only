@@ -3,20 +3,12 @@ const app = express();
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const session = require("express-session");
-/* const pool = require("./db/pool"); */
+const pool = require("./db/pool");
 app.use(session({ secret: "cats", resave: false, saveUninitialized: false }));
 app.use(passport.session());
 const { Pool } = require("pg");
 
-// All of the following properties should be read from environment variables
-// We're hardcoding them here for simplicity
-const pool = new Pool({
-  host: "localhost", // or wherever the db is hosted
-  user: "bpkp1996",
-  database: "membersonly",
-  password: "bpkp1996",
-  port: 5432, // The default port
-});
+
 
 app.use(express.urlencoded({ extended: false }));
 
@@ -86,7 +78,5 @@ app.post(
     failureRedirect: "/",
   })
 );
-
-
 
 app.listen(5000);

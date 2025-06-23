@@ -9,5 +9,3 @@ module.exports = new Pool({
   password: "bpkp1996",
   port: 5432, // The default port
 });
-
-module.exports = Pool;
