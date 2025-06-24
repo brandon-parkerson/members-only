@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const db = require("../db/queries");
 const bcrypt = require("bcryptjs");
+const passport = require("passport");
 
 router.use(express.urlencoded({ extended: true }));
 
@@ -29,10 +30,22 @@ router.post("/register", async (req, res, next) => {
   }
 });
 
+router.post(
+  "/login",
+  passport.authenticate("local", {
+    successRedirect: "/dashboard",
+    failureRedirect: "/",
+  })
+);
+
 router.get("/dashboard", (req, res) => {
-  console.log(req.user.user_first_name);
-  const firstName = req.user.user_first_name;
-  res.render("dashboard", { name: firstName });
+  
+  if (!req.user) {
+    res.redirect("/");
+  } else {
+    console.log(req.user.user_first_name);
+    res.render("dashboard", { name: req.user.user_first_name });
+  }
 });
 
 router.get("/log-out", (req, res) => {

@@ -72,12 +72,12 @@ passport.deserializeUser(async (id, done) => {
   }
 });
 
-app.post(
+/* app.post(
   "/login",
   passport.authenticate("local", {
     successRedirect: "/dashboard",
     failureRedirect: "/",
   })
-);
+); */
 
 app.listen(5000);
