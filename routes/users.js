@@ -42,7 +42,6 @@ router.get("/dashboard", (req, res) => {
   if (!req.user) {
     res.redirect("/");
   } else {
-    console.log(req.user.user_first_name);
     res.render("dashboard", { name: req.user.user_first_name });
   }
 });
@@ -51,13 +50,13 @@ router.get("/membership", (req, res) => {
   if (!req.user) {
     res.redirect("/");
   } else {
-    res.render("membership", {secret: ""});
+    res.render("membership", { secret: "" });
   }
 });
 
 router.post("/secret", (req, res) => {
   const secret = req.body.secret.trim();
-  if (secret === "thewhitestripes") {
+  if (secret === process.env.SESSION_SECRET) {
     res.redirect("/dashboard");
   } else {
     res.render("membership", { secret: "incorrect" });
