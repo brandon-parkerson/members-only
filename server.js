@@ -1,14 +1,15 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const session = require("express-session");
 const pool = require("./db/pool");
+const bcrypt = require("bcryptjs");
+
+
 app.use(session({ secret: "cats", resave: false, saveUninitialized: false }));
 app.use(passport.session());
-const { Pool } = require("pg");
-
-
 
 app.use(express.urlencoded({ extended: false }));
 

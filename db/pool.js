@@ -4,8 +4,8 @@ const { Pool } = require("pg");
 // We're hardcoding them here for simplicity
 module.exports = new Pool({
   host: "localhost", // or wherever the db is hosted
-  user: "bpkp1996",
-  database: "membersonly",
-  password: "bpkp1996",
-  port: 5432, // The default port
+  user: process.env.DB_USER,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASS,
+  port: process.env.DB_PORT, // The default port
 });
