@@ -1,12 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Membership</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Membership</h1>
-    <form action="/dashboard" method="post"></form>
-</body>
+    <form action="/secret" method="post">
+      <label for="passcode">
+        What is the secret:
+        <input type="password" name="secret" id="passcode" />
+      </label>
+      <button type="submit">Submit</button>
+    </form>
+    <% if(secret === "incorrect"){ %>
+    <p>Incorrect!</p>
+    <% } else{ %>
+    <p></p>
+    <% } %>
+  </body>
 </html>

@@ -23,6 +23,7 @@ app.use("/", usersRouter);
 app.use("/register", usersRouter);
 app.use("/dashboard", usersRouter);
 app.use("/log-out", usersRouter);
+app.use("/membership", usersRouter);
 
 // AUTH :)
 passport.use(
@@ -71,13 +72,5 @@ passport.deserializeUser(async (id, done) => {
     done(err);
   }
 });
-
-/* app.post(
-  "/login",
-  passport.authenticate("local", {
-    successRedirect: "/dashboard",
-    failureRedirect: "/",
-  })
-); */
 
 app.listen(5000);
