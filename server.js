@@ -1,5 +1,5 @@
 require("dotenv").config();
-const bcrypt =  require("bcryptjs");
+const bcrypt = require("bcryptjs");
 const express = require("express");
 const app = express();
 const passport = require("passport");
@@ -22,6 +22,7 @@ app.use(express.static("public"));
 app.use("/", usersRouter);
 app.use("/register", usersRouter);
 app.use("/dashboard", usersRouter);
+app.use("/log-out", usersRouter);
 
 // AUTH :)
 passport.use(

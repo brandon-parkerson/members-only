@@ -32,7 +32,17 @@ router.post("/register", async (req, res, next) => {
 router.get("/dashboard", (req, res) => {
   console.log(req.user.user_first_name);
   const firstName = req.user.user_first_name;
-  res.render("dashboard", {name: firstName});
+  res.render("dashboard", { name: firstName });
+});
+
+router.get("/log-out", (req, res) => {
+  req.logout((err) => {
+    if (err) {
+      return next;
+    } else {
+      res.redirect("/");
+    }
+  });
 });
 
 module.exports = router;
