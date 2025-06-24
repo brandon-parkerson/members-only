@@ -30,7 +30,9 @@ router.post("/register", async (req, res, next) => {
 });
 
 router.get("/dashboard", (req, res) => {
-  res.render("dashboard");
+  console.log(req.user.user_first_name);
+  const firstName = req.user.user_first_name;
+  res.render("dashboard", {name: firstName});
 });
 
 module.exports = router;
