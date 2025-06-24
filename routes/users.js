@@ -14,9 +14,9 @@ router.get("/register", (req, res) => {
 
 router.post("/register", async (req, res, next) => {
   try {
-    const firsName = req.body.first;
-    const lastName = req.body.last;
-    const email = req.body.email;
+    const firsName = req.body.first.trim();
+    const lastName = req.body.last.trim();
+    const email = req.body.email.trim();
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     const password = hashedPassword;
     const membershipStatus = "yes";

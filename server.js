@@ -1,12 +1,11 @@
 require("dotenv").config();
+const bcrypt =  require("bcryptjs");
 const express = require("express");
 const app = express();
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const session = require("express-session");
 const pool = require("./db/pool");
-
-
 
 app.use(session({ secret: "cats", resave: false, saveUninitialized: false }));
 app.use(passport.session());
@@ -40,9 +39,9 @@ passport.use(
           return done(null, false, { message: "Incorrect email" });
         }
 
-        // ❗NOTE: Use bcrypt here for production
-        if (user.password !== password) {
-          return done(null, false, { message: "Incorrect password" });
+        const match = await bcrypt.compare(password, user.password);
+        if (!match) {
+          return done(null, false, { message: "Incorrect Password" });
         }
 
         return done(null, user);
