@@ -19,7 +19,14 @@ async function insertUser(
   );
 }
 
+async function makeMember(id) {
+  await pool.query(
+    `UPDATE users SET membership_status = 'yes' WHERE user_id = ${id}`
+  )
+};
+
 module.exports = {
   getAllUsers,
   insertUser,
+  makeMember,
 };

@@ -20,7 +20,7 @@ router.post("/register", async (req, res, next) => {
     const email = req.body.email.trim();
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     const password = hashedPassword;
-    const membershipStatus = "yes";
+    const membershipStatus = "no";
     db.insertUser(firsName, lastName, email, password, membershipStatus);
     console.log(firsName, lastName, email, password, membershipStatus);
     res.redirect("/");
@@ -39,10 +39,13 @@ router.post(
 );
 
 router.get("/dashboard", (req, res) => {
+  const name = req.user.user_first_name;
+  const isMember = req.user.membership_status;
+
   if (!req.user) {
     res.redirect("/");
   } else {
-    res.render("dashboard", { name: req.user.user_first_name });
+    res.render("dashboard", { name: name, isMember: isMember });
   }
 });
 
@@ -56,7 +59,10 @@ router.get("/membership", (req, res) => {
 
 router.post("/secret", (req, res) => {
   const secret = req.body.secret.trim();
+  const id = req.user.user_id;
+  const name = req.user.user_first_name;
   if (secret === process.env.SESSION_SECRET) {
+    db.makeMember(id);
     res.redirect("/dashboard");
   } else {
     res.render("membership", { secret: "incorrect" });

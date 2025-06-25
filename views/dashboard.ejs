@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <h1>Welcome <%=name%>!</h1>
-        <a href="/log-out">Log Out</a>
-        <a href="/membership">Membership</a>
+      <h1>Welcome <%=name%>!</h1>
+      <a href="/log-out">Log Out</a>
+      <a href="/membership">Membership</a>
+      <% if (isMember === "yes") { %>
+      <a href="/post">Post</a>
+      <% } %>
     </header>
-    
-</body>
+    <main>
+      <div class="message-content">
+        <h2>Messages</h2>
+        <div class="messages-container"></div>
+      </div>
+    </main>
+  </body>
 </html>
