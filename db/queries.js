@@ -1,4 +1,3 @@
-const { user } = require("pg/lib/defaults.js");
 const pool = require("./pool");
 
 async function getAllUsers() {
@@ -22,11 +21,25 @@ async function insertUser(
 async function makeMember(id) {
   await pool.query(
     `UPDATE users SET membership_status = 'yes' WHERE user_id = ${id}`
-  )
-};
+  );
+}
+
+async function insertMessage(message, date, author, userid) {
+  await pool.query(
+    `INSERT INTO messages (message, date, author, userid) VALUES ($1, $2, $3, $4)`,
+    [message, date, author, userid]
+  );
+}
+
+async function getMessages() {
+  const { rows } = await pool.query(`SELECT * FROM messages`);
+  return rows;
+}
 
 module.exports = {
   getAllUsers,
   insertUser,
   makeMember,
+  insertMessage,
+  getMessages,
 };

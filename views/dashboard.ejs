@@ -17,7 +17,11 @@
     <main>
       <div class="message-content">
         <h2>Messages</h2>
-        <div class="messages-container"></div>
+        <div class="messages-container">
+          <% messages.forEach(msg => { %>
+            <li><strong><%= msg.author %></strong>: <%= msg.message %> (<%= msg.date %>)</li>
+          <%})%>
+        </div>
       </div>
     </main>
   </body>

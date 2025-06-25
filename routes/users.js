@@ -38,14 +38,18 @@ router.post(
   })
 );
 
-router.get("/dashboard", (req, res) => {
+router.get("/dashboard", async (req, res) => {
   const name = req.user.user_first_name;
   const isMember = req.user.membership_status;
-
+  const messages = await db.getMessages();
   if (!req.user) {
     res.redirect("/");
   } else {
-    res.render("dashboard", { name: name, isMember: isMember });
+    res.render("dashboard", {
+      name: name,
+      isMember: isMember,
+      messages: messages,
+    });
   }
 });
 
@@ -77,6 +81,27 @@ router.get("/log-out", (req, res) => {
       res.redirect("/");
     }
   });
+});
+
+
+
+// TODO: a post goes into db but needs the date to be formatted and display the message to the dashboard
+
+
+
+router.get("/post", (req, res) => {
+  res.render("post");
+});
+
+router.post("/post", (req, res) => {
+  const date = new Date().toDateString();
+  const message = req.body.message.trim();
+  const firstName = req.user.user_first_name;
+  const lastName = req.user.user_last_name;
+  const author = firstName + " " + lastName;
+  const userId = req.user.user_id;
+  db.insertMessage(message, date, author, userId);
+  res.redirect("/dashboard");
 });
 
 module.exports = router;
