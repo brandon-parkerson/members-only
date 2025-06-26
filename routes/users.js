@@ -54,10 +54,11 @@ router.get("/dashboard", async (req, res) => {
 });
 
 router.get("/membership", (req, res) => {
+  const isMember = req.user.membership_status;
   if (!req.user) {
     res.redirect("/");
   } else {
-    res.render("membership", { secret: "" });
+    res.render("membership", { isMember: isMember });
   }
 });
 
@@ -69,7 +70,7 @@ router.post("/secret", (req, res) => {
     db.makeMember(id);
     res.redirect("/dashboard");
   } else {
-    res.render("membership", { secret: "incorrect" });
+    res.redirect("/membership");
   }
 });
 
@@ -83,7 +84,7 @@ router.get("/log-out", (req, res) => {
   });
 });
 
-// TODO: hide author and date if not a member. style
+// TODO: fix wrong password routing bug when user presses "back". style
 
 router.get("/post", (req, res) => {
   res.render("post");

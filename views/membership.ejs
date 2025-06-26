@@ -7,6 +7,7 @@
   </head>
   <body>
     <h1>Membership</h1>
+    <a href="/dashboard">Dashboard</a>
     <form action="/secret" method="post">
       <label for="passcode">
         What is the secret:
@@ -14,10 +15,10 @@
       </label>
       <button type="submit">Submit</button>
     </form>
-    <% if(secret === "incorrect"){ %>
-    <p>Incorrect!</p>
+    <% if(isMember === "no"){ %>
+    <p>You are not a member yet</p>
     <% } else{ %>
-    <p></p>
+    <p>You are a member</p>
     <% } %>
   </body>
 </html>

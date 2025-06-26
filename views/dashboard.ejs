@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/styles.css">
     <title>Dashboard</title>
   </head>
   <body>
@@ -22,11 +23,11 @@
           <div class="message">
             <p><%=msg.message%></p>
             <% if (isMember==="yes") { %>
-            <p><%=msg.author%>,<%=msg.date %></p>
+            <p>-<i><%=msg.author%></i>,<%=msg.date %></p>
 
-            <% } %> <% if (isMember==="no") {%> 
-                <p>Anonymous</p>
-              <%}%>
+            <% } %> <% if (isMember==="no") {%>
+            <p><i>-Anonymous</i></p>
+            <%}%>
           </div>
           <%})%>
         </div>
