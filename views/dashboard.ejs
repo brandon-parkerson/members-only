@@ -19,7 +19,15 @@
         <h2>Messages</h2>
         <div class="messages-container">
           <% messages.forEach(msg => { %>
-            <li><strong><%= msg.author %></strong>: <%= msg.message %> (<%= msg.date %>)</li>
+          <div class="message">
+            <p><%=msg.message%></p>
+            <% if (isMember==="yes") { %>
+            <p><%=msg.author%>,<%=msg.date %></p>
+
+            <% } %> <% if (isMember==="no") {%> 
+                <p>Anonymous</p>
+              <%}%>
+          </div>
           <%})%>
         </div>
       </div>

@@ -83,11 +83,7 @@ router.get("/log-out", (req, res) => {
   });
 });
 
-
-
-// TODO: a post goes into db but needs the date to be formatted and display the message to the dashboard
-
-
+// TODO: hide author and date if not a member. style
 
 router.get("/post", (req, res) => {
   res.render("post");
