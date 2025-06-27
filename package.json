@@ -15,7 +15,7 @@
   "type": "commonjs",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon --ext js,ejs server.js",
+    "dev": "nodemon --ext js,ejs app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
