@@ -11,16 +11,24 @@
     />
     <title>Membership</title>
   </head>
-  <body class="d-flex flex-column vh-100 align-items-center">
-    <nav class="navbar navbar-light d-flex justify-content-around">
-      <h2 class="nav-item navbar-brand navbar-expand p-2">Membership</h2>
-      <a href="/dashboard" class="nav-item nav-link">Dashboard</a>
+  <body
+    class="d-flex flex-column vh-100 align-items-center justify-content-between"
+  >
+    <nav class="navbar vw-100 justify-content-evenly">
+      <h2 class="nav-item navbar-brand navbar-expand p-2">MemberBoard</h2>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a href="/dashboard" class="nav-link">Back</a>
+        </li>
+      </ul>
     </nav>
-    <div class="form-group d-flex flex-column justify-content-center align-items-center w-50">
+    <div
+      class="form-group d-flex flex-column justify-content-center align-items-center w-50"
+    >
       <form
         action="/secret"
         method="post"
-        class="form-group d-flex flex-column justify-content-center p-2 "
+        class="form-group d-flex flex-column justify-content-center p-2"
       >
         <label for="passcode" class="form-label">
           What is the secret:
@@ -33,12 +41,12 @@
         </label>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
+      <% if(isMember === "no"){ %>
+      <p>You are not a member yet</p>
+      <% } else{ %>
+      <p>You are a member</p>
+      <% } %>
     </div>
-
-    <% if(isMember === "no"){ %>
-    <p>You are not a member yet</p>
-    <% } else{ %>
-    <p>You are a member</p>
-    <% } %>
+    <footer>Created by Brandon Parkerson</footer>
   </body>
 </html>
