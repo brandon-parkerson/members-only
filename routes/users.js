@@ -39,12 +39,12 @@ router.post(
 );
 
 router.get("/dashboard", async (req, res) => {
-  const name = req.user.user_first_name;
-  const isMember = req.user.membership_status;
-  const messages = await db.getMessages();
   if (!req.user) {
     res.redirect("/");
   } else {
+    const name = req.user.user_first_name;
+    const isMember = req.user.membership_status;
+    const messages = await db.getMessages();
     res.render("dashboard", {
       name: name,
       isMember: isMember,
