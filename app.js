@@ -9,7 +9,13 @@ const pool = require("./db/pool");
 const initDb = require("./db/queries");
 initDb.initDb();
 
-app.use(session({ secret: process.env.SESSION_SECRET, resave: false, saveUninitialized: false }));
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 app.use(passport.session());
 
 app.use(express.urlencoded({ extended: false }));
@@ -26,7 +32,6 @@ app.use("/register", usersRouter);
 app.use("/dashboard", usersRouter);
 app.use("/log-out", usersRouter);
 app.use("/membership", usersRouter);
-
 
 // AUTH :)
 passport.use(
