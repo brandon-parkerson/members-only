@@ -7,15 +7,21 @@ const LocalStrategy = require("passport-local").Strategy;
 const session = require("express-session");
 const pool = require("./db/pool");
 const initDb = require("./db/queries");
+const MemoryStore = require("memorystore")(session);
+
 initDb.initDb();
 
 app.use(
   session({
-    secret: "cats",
+    cookie: { maxAge: 86400000 },
+    store: new MemoryStore({
+      checkPeriod: 86400000, // prune expired entries every 24h
+    }),
     resave: false,
-    saveUninitialized: false,
+    secret: "keyboard cat",
   })
 );
+
 app.use(passport.session());
 
 app.use(express.urlencoded({ extended: false }));
