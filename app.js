@@ -19,7 +19,7 @@ app.use(
     }),
     resave: false,
     saveUninitialized: false, 
-    secret: "keyboard cat",
+    secret: "cat",
   })
 );
 
