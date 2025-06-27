@@ -53,6 +53,8 @@ router.get("/dashboard", async (req, res) => {
   }
 });
 
+// TODO: STYLE MESSAGE POST PAGE
+
 router.get("/membership", (req, res) => {
   const isMember = req.user.membership_status;
   if (!req.user) {
