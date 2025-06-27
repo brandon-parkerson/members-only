@@ -6,6 +6,8 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const session = require("express-session");
 const pool = require("./db/pool");
+const initDb = require("./initDb");
+initDb();
 
 app.use(session({ secret: process.env.SESSION_SECRET, resave: false, saveUninitialized: false }));
 app.use(passport.session());
