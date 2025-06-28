@@ -42,7 +42,7 @@ exports.handleMembershipSecret = async (req, res, next) => {
   try {
     const secret = req.body.secret.trim();
     const id = req.user.user_id;
-    if (secret === process.env.SESSION_SECRET) {
+    if (secret === "thewhitestripes") {
       await db.makeMember(id);
       const updatedUser = await db.getUserById(id);
       req.login(updatedUser, function (err) {
