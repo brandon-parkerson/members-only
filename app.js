@@ -40,6 +40,7 @@ app.use("/register", usersRouter);
 app.use("/dashboard", usersRouter);
 app.use("/log-out", usersRouter);
 app.use("/membership", usersRouter);
+app.use("/secret", usersRouter);
 
 // AUTH :)
 passport.use(
@@ -88,5 +89,6 @@ passport.deserializeUser(async (id, done) => {
     done(err);
   }
 });
+
 
 app.listen(5000);
