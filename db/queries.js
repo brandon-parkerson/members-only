@@ -63,6 +63,18 @@ async function getMessages() {
   return rows;
 }
 
+async function getUserById() {
+  try {
+    const result = await pool.query("SELECT * FROM users WHERE user_id = $1", [
+      id,
+    ]);
+    return result.rows[0];
+  } catch (err) {
+    console.error("Error fetching user by ID:", err);
+    throw err;
+  }
+}
+
 module.exports = {
   initDb,
   getAllUsers,
@@ -70,4 +82,5 @@ module.exports = {
   makeMember,
   insertMessage,
   getMessages,
+  getUserById,
 };

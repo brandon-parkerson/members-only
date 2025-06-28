@@ -38,14 +38,22 @@ exports.renderMembership = (req, res) => {
   res.render("membership", { isMember: req.user.membership_status });
 };
 
-exports.handleMembershipSecret = (req, res) => {
-  const secret = req.body.secret.trim();
-  const id = req.user.user_id;
-  if (secret === process.env.SESSION_SECRET) {
-    db.makeMember(id);
-    res.redirect("/dashboard");
-  } else {
-    res.redirect("/membership");
+exports.handleMembershipSecret = async (req, res, next) => {
+  try {
+    const secret = req.body.secret.trim();
+    const id = req.user.user_id;
+    if (secret === process.env.SESSION_SECRET) {
+      await db.makeMember(id);
+      const updatedUser = await db.getUserById(id);
+      req.login(updatedUser, function (err) {
+        if (err) return next(err);
+        res.redirect("/dashboard");
+      });
+    } else {
+      res.redirect("/membership");
+    }
+  } catch (error) {
+    next(error);
   }
 };
 
