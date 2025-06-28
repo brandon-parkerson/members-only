@@ -19,7 +19,7 @@ app.use(
     }),
     resave: false,
     saveUninitialized: false, 
-    secret: "dog",
+    secret: process.env.SESSION_SECRET,
   })
 );
 
